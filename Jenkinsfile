@@ -26,7 +26,7 @@ pipeline{
                     ls -a
                     echo "install dependencies and test external code ..!"
                     npm install
-                    #npm test
+                    npm test
                 ''' 
             }    
         }

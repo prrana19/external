@@ -17,6 +17,7 @@ pipeline{
         }
         stage('git checkout'){
             steps{
+                cleanWS()
                 git 'https://github.com/dnizam/bootcamp-external.git'
             }    
         }

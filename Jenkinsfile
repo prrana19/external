@@ -1,7 +1,9 @@
+
+def ProjectId="dtc-user7"
 pipeline{
     agent any
     environment {
-        Image_name = "gcr.io/dtc-user7/external-image:V.${BUILD_ID}"
+        Image_name = "gcr.io/${ProjectId}/external-image:V.${BUILD_ID}"
     }
     stages{
         stage('dependancy versions'){
@@ -39,10 +41,10 @@ pipeline{
         }
         stage('deploy'){
             steps{
-                sh '''
-                    gcloud container clusters get-credentials cluster-1 --zone us-central1-c --project dtc-user7
+                sh """
+                    gcloud container clusters get-credentials cluster-1 --zone us-central1-c --project ${ProjectId}
                     kubectl set image deployment/events-web events-web=${Image_name}
-                ''' 
+                """ 
             }    
         }  
     }

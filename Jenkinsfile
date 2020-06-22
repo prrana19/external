@@ -1,6 +1,7 @@
 def ProjectId="prrana"
 pipeline{
     environment {
+    PORT=8081
     registry = "prrana/external"
     registryCredential = 'dockerhub'
     dockerImage = ''

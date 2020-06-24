@@ -46,7 +46,7 @@ pipeline{
         stage('building image'){
             steps{
                  script {
-                     dockerImage = docker.build registry + "$BUILD_NUMBER"
+                     dockerImage = docker.build registry + ":V2.0.$BUILD_NUMBER"
         
                         }
                      }
@@ -64,13 +64,13 @@ pipeline{
             steps{
                 sh """
                     gcloud container clusters get-credentials demo-app-cluster --zone us-central1-a --project prrana
-                    kubectl set image deployment/events-web events-web=$registry$BUILD_NUMBER --namespace=internal-external
+                    kubectl set image deployment/events-web events-web=$registry:V2.0.$BUILD_NUMBER --namespace=internal-external
                 """
             }    
         } 
         stage('Remove Unused docker image') {
              steps{
-              sh "docker rmi $registry$BUILD_NUMBER"
+              sh "docker rmi $registry:V2.0.$BUILD_NUMBER"
                 }
             }
             

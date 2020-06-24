@@ -63,7 +63,7 @@ pipeline{
             stage('deploy'){
             steps{
                 sh """
-                    gcloud container clusters get-credentials my-app-cluster --zone us-central1-a --project prrana
+                    gcloud container clusters get-credentials demo-app-cluster --zone us-central1-a --project prrana
                     kubectl set image deployment/events-web events-web=$registry$BUILD_NUMBER --namespace=internal-external
                 """
             }    
